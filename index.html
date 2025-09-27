@@ -3,30 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>قرعه‌کشی عددی</title>
+  <!-- تغییر عنوان صفحه -->
+  <title>قرعه کشی جوایز موسسه آموزشی علامه حلی</title>
+  
+  <!-- استایل اصلی -->
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- فونت وزیرمتن -->
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+  
+  <!-- اضافه کردن کتابخانه آیکون Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <h1>🎲 قرعه‌کشی عددی</h1>
+    <!-- تغییر عنوان اصلی -->
+    <h1><i class="fa-solid fa-graduation-cap"></i> قرعه کشی برندگان جوایز موسسه آموزشی علامه حلی</h1>
 
     <div id="setup" class="step active">
-      <p>لطفاً محدوده اعداد را مشخص کنید:</p>
+      <p>لطفاً محدوده اعداد را برای شروع قرعه‌کشی مشخص کنید:</p>
       <input type="number" id="min" placeholder="عدد شروع (مثلاً 1)" min="0" value="1">
       <input type="number" id="max" placeholder="عدد پایان (مثلاً 100)" min="1" value="100">
-      <button onclick="startLottery()">شروع قرعه‌کشی</button>
+      <button onclick="startLottery()"><i class="fa-solid fa-play"></i> شروع قرعه‌کشی</button>
     </div>
 
     <div id="lottery" class="step">
-      <p>محدوده: <span id="range-display"></span></p>
-      <button id="draw-btn" onclick="drawNumber()">قرعه‌کشی!</button>
-      <div id="result"></div>
-      <button id="reset-btn" onclick="resetLottery()">شروع دوباره</button>
+      <p>قرعه کشی در محدوده: <span id="range-display"></span></p>
+      
+      <!-- این بخش برای نمایش انیمیشن عدد است -->
+      <div id="result">
+        <span id="winner-number">🏆</span>
+      </div>
+
+      <div class="button-group">
+        <button id="draw-btn" onclick="drawNumber()"><i class="fa-solid fa-dice-d6"></i> انتخاب برنده!</button>
+        <button id="reset-btn" onclick="resetLottery()"><i class="fa-solid fa-rotate-right"></i> شروع دوباره</button>
+      </div>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>
