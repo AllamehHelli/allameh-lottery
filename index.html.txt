@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>قرعه‌کشی عددی</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🎲 قرعه‌کشی عددی</h1>
+
+    <div id="setup" class="step active">
+      <p>لطفاً محدوده اعداد را مشخص کنید:</p>
+      <input type="number" id="min" placeholder="عدد شروع (مثلاً 1)" min="0" value="1">
+      <input type="number" id="max" placeholder="عدد پایان (مثلاً 100)" min="1" value="100">
+      <button onclick="startLottery()">شروع قرعه‌کشی</button>
+    </div>
+
+    <div id="lottery" class="step">
+      <p>محدوده: <span id="range-display"></span></p>
+      <button id="draw-btn" onclick="drawNumber()">قرعه‌کشی!</button>
+      <div id="result"></div>
+      <button id="reset-btn" onclick="resetLottery()">شروع دوباره</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
