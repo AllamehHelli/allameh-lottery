@@ -40,9 +40,17 @@ body {
   padding-bottom: 15px;
 }
 
+/* === تغییر اول اینجاست === */
+/* این کد برای استایل دادن به لوگو اضافه شده است */
+.logo {
+  max-height: 60px; /* می‌توانید این عدد را برای تغییر اندازه لوگو کم یا زیاد کنید */
+  margin-bottom: 15px; 
+}
+
+/* === تغییر دوم اینجاست === */
+/* آیکون کلاه را مخفی می‌کنیم چون لوگو جای آن را گرفته است */
 .header-icon {
-  font-size: 32px;
-  color: var(--primary-color);
+  display: none;
 }
 
 h1 {
@@ -152,7 +160,6 @@ input[type="number"]:focus {
   color: var(--success-color);
 }
 
-/* انیمیشن برای نمایش برنده */
 .reveal {
   animation: revealWinner 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
