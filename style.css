@@ -18,8 +18,6 @@ body {
   justify-content: center;
   align-items: center;
   color: var(--dark-text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .card {
@@ -28,57 +26,35 @@ body {
   border-radius: 16px;
   box-shadow: var(--card-shadow);
   text-align: center;
-  max-width: 500px;
+  max-width: 600px; /* کمی بزرگتر برای نمایش بهتر اطلاعات */
   width: 90%;
   border: 1px solid var(--border-color);
-  overflow: hidden; /* برای انیمیشن‌ها */
+  overflow: hidden;
 }
 
 .card-header {
   margin-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
   padding-bottom: 15px;
 }
 
-/* === تغییر اول اینجاست === */
-/* این کد برای استایل دادن به لوگو اضافه شده است */
 .logo {
-  max-height: 60px; /* می‌توانید این عدد را برای تغییر اندازه لوگو کم یا زیاد کنید */
-  margin-bottom: 15px; 
+  max-height: 60px;
+  margin-bottom: 15px;
 }
 
-/* === تغییر دوم اینجاست === */
-/* آیکون کلاه را مخفی می‌کنیم چون لوگو جای آن را گرفته است */
-.header-icon {
-  display: none;
-}
+h1 { font-size: 24px; font-weight: 700; margin: 0; }
+h2 { font-size: 20px; color: var(--primary-color); }
+h3 { font-size: 16px; margin-bottom: 10px; font-weight: 500; }
 
-h1 {
-  margin-top: 10px;
-  margin-bottom: 0;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.step {
-  display: none;
-  animation: fadeIn 0.5s ease-in-out;
-}
-.step.active {
-  display: block;
-}
+.step { display: none; animation: fadeIn 0.5s ease-in-out; }
+.step.active { display: block; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.input-group {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
-}
-
+.input-group { display: flex; gap: 15px; margin: 20px 0; }
 input[type="number"] {
   width: 100%;
   padding: 12px;
@@ -86,9 +62,7 @@ input[type="number"] {
   border-radius: 8px;
   font-size: 16px;
   text-align: center;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
-
 input[type="number"]:focus {
   outline: none;
   border-color: var(--primary-color);
@@ -96,62 +70,83 @@ input[type="number"]:focus {
 }
 
 .btn {
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 5px;
-  transition: all 0.2s ease-in-out;
-  font-weight: bold;
-  font-family: 'Vazirmatn', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  color: white; border: none; padding: 12px 24px; font-size: 16px;
+  border-radius: 8px; cursor: pointer; margin: 5px;
+  transition: all 0.2s ease-in-out; font-weight: bold;
+  font-family: 'Vazirmatn', sans-serif; display: inline-flex;
+  align-items: center; justify-content: center; gap: 8px;
 }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.btn:active { transform: translateY(0); }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.btn:active {
-  transform: translateY(0);
-}
+.btn-primary { background-color: var(--primary-color); }
+.btn-primary:hover { background-color: #0069d9; }
+.btn-secondary { background-color: var(--secondary-color); }
+.btn-secondary:hover { background-color: #5a6268; }
 
-.btn-primary {
+/* === تغییر: استایل‌های جدید برای منوی انتخاب === */
+.selection-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+.btn-selection {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 15px;
+  font-size: 18px;
+}
+.btn-selection:hover {
   background-color: var(--primary-color);
-}
-.btn-primary:hover {
-  background-color: #0069d9;
-}
-
-.btn-secondary {
-  background-color: var(--secondary-color);
-}
-.btn-secondary:hover {
-  background-color: #5a6268;
+  color: #fff;
 }
 
 .range {
-  font-weight: bold;
-  color: var(--primary-color);
-  background-color: #e7f3ff;
-  padding: 4px 8px;
-  border-radius: 6px;
+  font-weight: bold; color: var(--primary-color); background-color: #e7f3ff;
+  padding: 4px 8px; border-radius: 6px;
 }
+
+/* === تغییر: استایل‌های جدید برای نمایش جوایز === */
+.prize-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+#prize-list { display: flex; flex-direction: column; gap: 10px; }
+.prize-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  border-right: 4px solid var(--secondary-color);
+  transition: all 0.3s ease;
+}
+.prize-item.claimed {
+  border-right-color: var(--success-color);
+  background-color: #f0fff4;
+}
+.prize-amount { font-weight: bold; }
+.prize-winner {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--success-color);
+}
+.prize-winner::before {
+  content: "برنده: ";
+  font-weight: normal;
+  font-size: 14px;
+  color: var(--dark-text);
+}
+.prize-status { color: #888; }
+
 
 .winner-display {
   margin: 25px auto;
-  min-height: 100px;
-  width: 150px;
-  height: 100px;
+  min-height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px dashed var(--border-color);
-  border-radius: 12px;
 }
 
 #winner-number {
@@ -160,10 +155,7 @@ input[type="number"]:focus {
   color: var(--success-color);
 }
 
-.reveal {
-  animation: revealWinner 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
+.reveal { animation: revealWinner 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 @keyframes revealWinner {
   0% { transform: scale(0.5); opacity: 0; }
   60% { transform: scale(1.1); opacity: 1; }
