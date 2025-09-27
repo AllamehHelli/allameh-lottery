@@ -1,78 +1,81 @@
-body {
-  font-family: 'Vazirmatn', sans-serif;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  margin: 0;
-  padding: 20px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #333;
+let availableNumbers = [];
+let minVal, maxVal;
+
+function startLottery() {
+  const minInput = document.getElementById('min').value;
+  const maxInput = document.getElementById('max').value;
+
+  minVal = parseInt(minInput);
+  maxVal = parseInt(maxInput);
+
+  if (isNaN(minVal) || isNaN(maxVal) || minVal > maxVal) {
+    alert('لطفاً یک محدوده معتبر وارد کنید (عدد شروع باید کوچکتر یا مساوی عدد پایان باشد).');
+    return;
+  }
+
+  availableNumbers = [];
+  for (let i = minVal; i <= maxVal; i++) {
+    availableNumbers.push(i);
+  }
+
+  document.getElementById('range-display').textContent = `${minVal} تا ${maxVal}`;
+  document.getElementById('setup').classList.remove('active');
+  document.getElementById('lottery').classList.add('active');
+  document.getElementById('winner-number').innerHTML = '🏆'; // بازنشانی به آیکون جام
 }
 
-.container {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  text-align: center;
-  max-width: 500px;
-  width: 90%;
+function drawNumber() {
+  const drawBtn = document.getElementById('draw-btn');
+  const winnerDisplay = document.getElementById('winner-number');
+
+  if (availableNumbers.length === 0) {
+    winnerDisplay.textContent = 'تمام شد!';
+    drawBtn.disabled = true;
+    return;
+  }
+
+  drawBtn.disabled = true; // غیرفعال کردن دکمه در حین انیمیشن
+
+  // انیمیشن شمارش سریع اعداد
+  let animationInterval = setInterval(() => {
+    const randomNumber = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
+    winnerDisplay.textContent = randomNumber;
+  }, 50); // هر 50 میلی‌ثانیه یک عدد تصادفی نشان بده
+
+  // توقف انیمیشن بعد از 2.5 ثانیه و نمایش برنده واقعی
+  setTimeout(() => {
+    clearInterval(animationInterval);
+
+    const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+    const winner = availableNumbers.splice(randomIndex, 1)[0];
+    
+    winnerDisplay.textContent = winner; // نمایش عدد برنده نهایی
+    winnerDisplay.style.transform = 'scale(1.5)';
+    winnerDisplay.style.transition = 'transform 0.3s ease';
+    setTimeout(() => {
+        winnerDisplay.style.transform = 'scale(1)';
+    }, 300);
+
+
+    if (availableNumbers.length === 0) {
+        // اگر این آخرین عدد بود، پیام پایانی را نمایش بده
+        setTimeout(() => {
+            winnerDisplay.textContent = `🎉 ${winner}`;
+            alert('🎉 همه اعداد قرعه‌کشی شدند!');
+        }, 1500);
+    } else {
+        drawBtn.disabled = false; // فعال کردن مجدد دکمه
+    }
+
+  }, 2500); // مدت زمان کل انیمیشن
 }
 
-h1 {
-  margin-top: 0;
-  color: #2575fc;
-  font-size: 28px;
-}
-
-.step {
-  display: none;
-}
-.step.active {
-  display: block;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-  direction: ltr;
-  text-align: center;
-}
-
-button {
-  background: #ff4d94;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  font-size: 18px;
-  border-radius: 12px;
-  cursor: pointer;
-  margin: 10px 5px;
-  transition: all 0.3s;
-  font-weight: bold;
-}
-
-button:hover {
-  background: #ff1a75;
-  transform: scale(1.05);
-}
-
-#result {
-  margin-top: 25px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #e91e63;
-  min-height: 40px;
-}
-
-#reset-btn {
-  background: #6c757d;
-}
-#reset-btn:hover {
-  background: #5a6268;
+function resetLottery() {
+  document.getElementById('lottery').classList.remove('active');
+  document.getElementById('setup').classList.add('active');
+  document.getElementById('draw-btn').disabled = false;
+  document.getElementById('winner-number').innerHTML = '🏆';
+  // پاک کردن ورودی‌ها برای شروع مجدد
+  document.getElementById('min').value = '1';
+  document.getElementById('max').value = '100';
 }
