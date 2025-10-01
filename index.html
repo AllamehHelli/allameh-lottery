@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>سیستم قرعه کشی موسسه آموزشی علامه حلی</title>
+  <title>سیستم قرعه کشی موسسه علامه حلی</title>
   
   <link rel="stylesheet" href="style.css" />
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
@@ -12,20 +12,19 @@
 <body>
   <div class="card">
     
-    <!-- === تغییر: این بخش کاملاً جدید است === -->
     <!-- مرحله صفر: انتخاب نوع قرعه کشی -->
     <div id="lottery-selection" class="step active">
       <div class="card-header">
         <img src="logo.png" alt="لوگوی موسسه علامه حلی" class="logo">
-        <h1> سیستم جامع قرعه کشی جوایز موسسه علامه حلی</h1>
+        <h1>سیستم جامع قرعه کشی جوایز موسسه علامه حلی</h1>
       </div>
       <p>لطفاً نوع قرعه‌کشی مورد نظر را انتخاب کنید:</p>
       <div class="selection-buttons">
         <button class="btn btn-selection" onclick="selectLottery(0)">
-          <i class="fa-solid fa-star"></i> پایه ششم
+          <i class="fa-solid fa-star"></i> پایه ششم - کمیته امداد
         </button>
         <button class="btn btn-selection" onclick="selectLottery(1)">
-          <i class="fa-solid fa-award"></i> پایه نهم 
+          <i class="fa-solid fa-award"></i> پایه نهم - کمیته امداد
         </button>
         <button class="btn btn-selection" onclick="selectLottery(2)">
           <i class="fa-solid fa-medal"></i> پایه نهم - بنیاد علوی
@@ -33,42 +32,18 @@
       </div>
     </div>
 
-    <!-- مرحله اول: تنظیمات -->
-    <div id="setup" class="step">
-      <h2 id="setup-title"></h2>
-      <p>لطفاً محدوده اعداد شرکت‌کنندگان را مشخص کنید:</p>
-      <div class="input-group">
-        <input type="number" id="min" placeholder="عدد شروع" value="1">
-        <input type="number" id="max" placeholder="عدد پایان">
-      </div>
-      <button class="btn btn-primary" onclick="startLottery()">
-        <i class="fa-solid fa-play"></i> شروع و آماده‌سازی
-      </button>
-      <button class="btn btn-secondary" onclick="goHome()">
-        <i class="fa-solid fa-arrow-right"></i> بازگشت
-      </button>
-    </div>
-
-    <!-- مرحله دوم: قرعه کشی -->
-    <div id="lottery" class="step">
+    <!-- مرحله اصلی: صفحه قرعه کشی -->
+    <div id="lottery-page" class="step">
       <h2 id="lottery-title"></h2>
-      <p>محدوده: <span id="range-display" class="range"></span></p>
       
-      <!-- === تغییر: این بخش برای نمایش جوایز است === -->
       <div class="prize-section">
-        <h3>لیست جوایز:</h3>
+        <h3>برای هر جایزه، قرعه‌کشی را به صورت مجزا شروع کنید:</h3>
         <div id="prize-list">
-          <!-- جوایز اینجا توسط جاوا اسکریپت اضافه می‌شوند -->
+          <!-- جوایز اینجا توسط جاوا اسکریپت ساخته می‌شوند -->
         </div>
       </div>
 
-      <div class="winner-display">
-        <span id="winner-number">🏆</span>
-      </div>
       <div class="button-group">
-        <button id="draw-btn" class="btn btn-primary" onclick="drawNumber()">
-          <i class="fa-solid fa-dice-d6"></i> انتخاب برنده بعدی!
-        </button>
         <button class="btn btn-secondary" onclick="goHome()">
           <i class="fa-solid fa-house"></i> بازگشت به منوی اصلی
         </button>
@@ -76,8 +51,23 @@
     </div>
   </div>
 
+  <!-- === تغییر: این بخش پاپ آپ (Modal) کاملاً جدید است === -->
+  <div id="modal-overlay" class="modal-hidden">
+    <div id="modal-content">
+      <button id="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 id="modal-title"></h3>
+      <p>لطفاً محدوده اعداد را برای این قرعه‌کشی وارد کنید:</p>
+      <div class="input-group">
+        <input type="number" id="modal-min" placeholder="عدد شروع" value="1">
+        <input type="number" id="modal-max" placeholder="عدد پایان">
+      </div>
+      <button class="btn btn-primary" onclick="confirmAndDraw()">
+        <i class="fa-solid fa-check"></i> تایید و انجام قرعه‌کشی
+      </button>
+      <div id="modal-winner-display"></div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-
